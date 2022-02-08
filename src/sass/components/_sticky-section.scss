@@ -1,0 +1,250 @@
+//
+// Sticky sections. In combination with locomotive
+//
+.sticky-section {
+    padding-top: 30vh;
+    padding-bottom: 30vh;
+
+    &.with-images { padding-top: 40px; }
+
+    .sticky-content {
+        margin-bottom: 24px;
+
+        h4 { padding-bottom: 16px;}
+        h3 {
+            padding-top: 32px;
+            color: $colorBlack-alt;
+        }
+    }
+
+    .normal-content {
+        h4 {
+            padding-top: 56px;
+            padding-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+
+            &.listed-qualifications {
+                li {
+                    font-size: rem(16px);
+                    padding-bottom: 16px;
+                }
+            }
+
+            &.listed-insights {
+                li {
+                    p {
+                        padding-bottom: 8px;
+
+                        &:last-child { padding-bottom: 0; }
+                    }
+                }
+            }
+        }
+
+        &.content-gallery {
+            img {
+                &:first-child { padding-top: 0; }
+            }
+        }
+        .mbl_view_btn{
+            display: none;
+        }
+    }
+
+    .sticky-content,
+    .normal-content {
+        &.content-gallery {
+            img {
+                padding-top: 24px;
+                width: 100%;
+                height: auto;
+
+                &:first-child { padding-top: 0; }
+            }
+        }
+    }
+
+    .image-after-content-gallery { display: none; }
+
+    // Project details
+    &.project-details {
+        padding-left: 56px;
+
+        .sticky-content { margin-bottom: 0; }
+    }
+
+    // Project details text color
+    &.project-details-white {
+        h2, h4, p { color: $colorWhite; }
+    }
+
+    &.project-sticky-gallery {
+        padding-bottom: 24px;
+        padding-left: 56px;
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .sticky-section {
+        .sticky-content { margin-bottom: 40px; }
+
+        .normal-content {
+            h4 {
+                padding-top: 80px;
+                padding-bottom: 16px;
+            }
+    
+            ul {
+                &.listed-qualifications {
+                    li {
+                        font-size: rem(24px);
+                        padding-bottom: 24px;
+
+                        &:last-child { padding-bottom: 0; }
+                    }
+                }
+            }
+        }
+
+        .sticky-content,
+        .normal-content {
+            &.content-gallery {
+                img { padding-top: 40px; }
+            }
+        }
+
+        // Project details
+        &.project-details {
+            margin-left: -72px;
+            padding-left: 72px;
+        }
+
+        &.project-sticky-gallery { padding-bottom: 48px; }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .sticky-section {
+        &.with-images { padding-top: 0; }
+        .container { @include flex(space-between); }
+
+        .sticky-content,
+        .normal-content {
+            width: calc(100% / 8 * 3 - 25px);
+
+            &.content-gallery-right { width: calc(100% / 8 * 5 - 15px); }
+            &.content-gallery-left {
+                width: calc(100% / 8 * 3 - 25px);
+
+                img { padding-bottom: 5px; }
+            }
+            &.content-gallery {
+                opacity: 1;
+                margin-top: 0;
+
+                img:first-child { padding-top: 4.5vw; }
+            }
+        }
+
+        .sticky-content {
+            height: fit-content;
+            margin-left: calc(100% / 8 * 1 + 5px);
+            margin-bottom: 0;
+            padding-top: 120px;
+            padding-bottom: 0;
+
+            &.content-gallery {
+                margin-left: 0;
+                padding-top: 0;
+            }
+        }
+
+        .normal-content {
+            margin-top: 100vh;
+            opacity: 0;
+            @include transition(3s);
+
+            &.content-gallery {
+                padding-top: 0;
+
+                img { padding-top: 40px; }
+            }
+
+            &.is-inview { opacity: 1; }
+        }
+
+        .image-after-content-gallery {
+            width: calc(100% - 9vw);
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        &.project-sticky-gallery { padding-bottom: 4.5vw; }
+    }
+}
+@media screen and (max-width: 1023px){
+    .sticky-section{
+        .normal-content{
+            .mbl_view_btn{
+                display: block;
+                margin-top: 30px;
+                &.hidden{
+                    display: none;
+                }
+            }
+            .mbl_hidden{
+                display: none;
+                &.active{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .sticky-section {
+        .normal-content {
+            h4 {
+                padding-top: 160px;
+                padding-bottom: 32px;
+            }
+
+            ul {
+                &.listed-qualifications {
+                    li {
+                        font-size: rem(40px);
+                        font-weight: 100;
+                        padding-bottom: 32px;
+                    }
+                }
+            }
+        }
+
+        .image-after-content-gallery { width: calc(100% - 12vw); }
+
+        // Project details
+        &.project-details {
+            margin-left: -96px;
+            padding-left: 96px;
+        }
+
+        &.project-sticky-gallery { padding-bottom: 6vw; }
+    }
+}

@@ -1,0 +1,90 @@
+//
+// General page-transition
+//
+// Page Load aniamtion 
+a.button-gradient.demo_btn {
+    display: block;
+    margin: 0 auto;
+    height: 500px;
+    text-align: center;
+  }
+  .loading-cont{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 999999;
+    pointer-events: none;
+  }
+  .loader-container {
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    background-color: transparent;
+    width: 200%;
+    height: 150vh;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+   .loader {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: #333;
+    animation: pathnw 5s linear;
+    animation-fill-mode: forwards;
+  }
+  
+  .loader--hide {
+    display: block;
+  }
+  
+  
+  @keyframes pathnw {
+    0% {
+      border-top-left-radius: 100%;
+      border-top-right-radius: 100%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    50% {
+      border-top-left-radius: 0%;
+      border-top-right-radius: 0%;
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
+    60% {
+      border-top-left-radius: 0%;
+      border-top-right-radius: 0%;
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+    }
+    90% {
+      border-radius: 0%;
+    }
+    100% {
+      border-radius: 0%;
+    }
+  }
+  
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {}

@@ -1,0 +1,41 @@
+//
+// Project section with background
+//
+.background-section {
+    width: 100vw;
+    margin-left: -56px;
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .background-section {
+        margin-left: -72px;
+
+        .sticky-section {
+            &.project-details { margin-left: 0; }
+            &.project-sticky-gallery { padding-left: 72px; }
+        }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .background-section {
+        margin-left: -96px;
+
+        .sticky-section {
+            &.project-sticky-gallery { padding-left: 96px; }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+//
+// Sticky parallax in combination with locomotive, right before the footer on the About-page
+//
+.sticky-parallax {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
+    margin-left: -56px;
+    margin-bottom: -120px;
+    z-index: 2;
+
+    .container {
+        padding-left: 56px;
+        mix-blend-mode: difference;
+
+        h2 { padding-top: 200px; }
+    }
+
+    .parallax-image {
+        position: absolute;
+        width: 100%;
+        height: inherit;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: -1;
+        overflow: hidden;
+        @include transition(1.5s);
+
+        .footer-image {
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/images/projects/bettersite/mschristensen-bettersite-big-parallax.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        &.is-inview {
+            left: 56px;
+            width: 50vw;
+        }
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .sticky-parallax {
+        margin-left: -72px;
+
+        .container { padding-left: 72px; }
+
+        .parallax-image {
+            &.is-inview { left: 72px; }
+        }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .sticky-parallax {
+        height: 150vh;
+
+        .container {
+            h2 {
+                margin-left: calc(100% / 8 * 1 + 5px);
+                width: calc(100% / 8 * 6 - 10px);
+                padding-top: 140px;
+            }
+        }
+
+        .parallax-image {
+            &.is-inview { width: calc(100vw / 8 * 4 - 72px - 50px); }
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .sticky-parallax {
+        margin-left: -96px;
+        margin-bottom: -200px;
+
+        .container { padding-left: 96px; }
+
+        .parallax-image {
+            &.is-inview {
+                left: 96px;
+                width: calc(100vw / 8 * 4 - 96px - 110px);
+            }
+        }
+    }
+}

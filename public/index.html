@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" href="../src/sass/main.scss" />
+    <link rel="stylesheet" href="../src/sass/normalize/_normalize.scss" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/splitting/dist/splitting.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/splitting/dist/splitting-cells.css"
+    />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <link
+      rel="canonical"
+      href="https://www.curtainsjs.com/examples/multiple-textures/index.html"
+    />
+
+    <!-- Facebook OG -->
+    <meta
+      property="og:title"
+      content="curtains.js | Multiple textures example"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="A WebGL infinite slideshow with a displacement fragment shader using curtains.js"
+    />
+    <meta
+      property="og:url"
+      content="https://www.curtainsjs.com/examples/multiple-textures/index.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.curtainsjs.com/images/curtains-js-logo.jpg"
+    />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@webdesign_ml" />
+    <meta name="twitter:creator" content="@webdesign_ml" />
+    <meta
+      name="twitter:title"
+      content="curtains.js | Multiple textures example"
+    />
+    <meta
+      name="twitter:description"
+      content="A WebGL infinite slideshow with a displacement fragment shader using curtains.js"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.curtainsjs.com/images/curtains-js-logo.jpg"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../images/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../images/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../images/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../../images/favicons/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../../images/favicons/safari-pinned-tab.svg"
+      color="#202340"
+    />
+    <link rel="shortcut icon" href="../../images/favicons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#202340" />
+    <meta
+      name="msapplication-config"
+      content="../../images/favicons/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#202340" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans:400"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <!-- df -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebGL Image Transitions | Demo 7 | Codrops</title>
+    <meta
+      name="description"
+      content="A set of creative WebGL-powered image transitions"
+    />
+    <meta
+      name="keywords"
+      content="webgl, image transition, distortion, warp, effect, web design"
+    />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://use.typekit.net/fex2uvn.css" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this in a modern browser that supports CSS Variables."
+        );
+    </script>
+    <script src="js/analytics.js"></script>
+    <!-- ddf -->
+  </head>
+  <body data-scroll-container id="body">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div class="loading-cont">
+      <div class="loader-container loader--hide">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js"></script>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <script>
+      Splitting();
+    </script>
+  </body>
+</html>

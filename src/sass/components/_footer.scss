@@ -1,0 +1,100 @@
+//
+// Footer on the About-page
+//
+footer {
+    position: relative;
+    background-color: $colorSand-light;
+    padding-top: 200px;
+    padding-bottom: 160px;
+    padding-left: 56px;
+    margin-left: -56px;
+
+    .container {
+        width: calc(100vw - 56px - 48px);
+        margin: 0 auto;
+    }
+
+    h3 {
+        padding-bottom: 32px;
+        word-wrap: break-word;
+    }
+
+    ul {
+        list-style: none;
+        
+        li {
+            padding-top: 24px;
+
+            &:first-child { padding-top: 0; }
+        }
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    footer {
+        padding-top: 240px;
+        padding-bottom: 120px;
+        padding-left: 72px;
+        margin-left: -72px;
+
+        .container { width: calc(100vw - 72px - 96px); }
+        h3 { padding-bottom: 40px; }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    footer {
+        .container { width: calc(100vw - 72px - 9vw); }
+
+        h3 {
+            word-wrap: normal;
+            width: calc(100% / 8 * 6 - 10px);
+            margin-left: calc(100% / 8 * 2 + 10px);
+        }
+
+        ul {
+            width: calc(100% / 8 * 6 - 10px);
+            margin-left: calc(100% / 8 * 2 + 10px);
+            
+            li {
+                padding-top: 0;
+                float: left;
+    
+                &:first-child { margin-right: 80px; }
+            }
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    footer {
+        padding-top: 360px;
+        padding-bottom: 240px;
+        padding-left: 96px;
+        margin-left: -96px;
+
+        .container { width: calc(100vw - 96px - 12vw); }
+
+        h3 {
+            padding-bottom: 64px;
+            margin-left: calc(100% / 8 * 2);
+        }
+
+        ul {
+            margin-left: calc(100% / 8 * 2);
+
+            li:first-child { margin-right: 120px; }
+        }
+    }
+}

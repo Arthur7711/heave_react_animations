@@ -1,0 +1,169 @@
+//
+// Mixins
+//
+// How to import SVG's
+//
+@mixin svg($svg, $color, $size) {
+	background-image: inline-color-svg($svg, $color);
+	background-size: $size;
+	background-repeat: no-repeat;
+	background-position: center center;
+	object-fit: contain;
+}
+
+//
+// Positioning
+//
+@mixin center($position-x, $position-y) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	-webkit-transform: translate($position-x, $position-y);
+	transform: translate($position-x, $position-y);
+}
+
+@mixin center-up($position-x, $position-y, $rotate) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	-webkit-transform: translate($position-x, $position-y) rotate($rotate);
+	transform: translate($position-x, $position-y) rotate($rotate) ;
+}
+
+@mixin center-rotate($position-x, $position-y, $rotate) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	-webkit-transform: translate($position-x, $position-y) rotate($rotate);;
+	transform: translate($position-x, $position-y) rotate($rotate);;
+}
+
+//
+// Flex
+//
+@mixin flex($flex) {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: $flex;
+	justify-content: $flex;
+}
+
+@mixin flex-align($align) {
+	align-items: $align;
+	-ms-flex-align: $align;
+	-webkit-align-items: $align;
+	-webkit-box-align: $align;
+}
+
+//
+// Transitions
+//
+@mixin transition($length) {
+	-webkit-transition: all $length cubic-bezier(0.24, 0.63, 0.5, 0.99);
+	transition: all $length cubic-bezier(0.24, 0.63, 0.5, 0.99);
+}
+
+@mixin transition-text($length) {
+	-webkit-transition: background-color $length cubic-bezier(0.24, 0.63, 0.5, 0.99), color $length cubic-bezier(0.24, 0.63, 0.5, 0.99);
+	transition: background-color $length cubic-bezier(0.24, 0.63, 0.5, 0.99), color $length cubic-bezier(0.24, 0.63, 0.5, 0.99);
+}
+
+@mixin transition-delay($length) {
+	-webkit-transition-delay: $length;
+	-moz-transition-delay: $length;
+	-o-transition-delay: $length;
+	transition-delay: $length;
+}
+
+@mixin transition-property($property) {
+	-webkit-transition-property: $property;
+	-moz-transition-property: $property;
+	-o-transition-property: $property;
+	transition-property: $property;
+}
+
+//
+// Rotating
+//
+@mixin rotate($rotate) {
+	-ms-transform: rotate($rotate);
+	-webkit-transform: rotate($rotate);
+	transform: rotate($rotate);
+}
+
+//
+// Scaling
+//
+@mixin scale($scale) {
+	-webkit-transform: scale($scale);
+	-ms-transform: scale($scale);
+	-moz-transform: scale($scale);
+	transform: scale($scale);
+}
+
+//
+// Shadows
+//
+@mixin shadow($opacity) {
+	-webkit-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, $opacity);
+	-moz-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, $opacity);
+	box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, $opacity);
+}
+
+//
+// Gradients
+//
+@mixin gradient-vertical() {
+	background: rgb(248,73,27);
+	background: linear-gradient(180deg, rgba(248,73,27,1) 0%, rgba(241,47,63,1) 50%, rgba(220,24,96,1) 100%);
+}
+
+@mixin gradient-horizontal() {
+	background: rgb(248,73,27);
+	background: linear-gradient(90deg, rgba(248,73,27,1) 0%, rgba(241,47,63,1) 50%, rgba(220,24,96,1) 100%);
+}
+
+@mixin gradient-vertical-reversed() {
+	background: rgb(0,163,255);
+	background: linear-gradient(180deg, rgba(0, 163, 255, 1) 0%, rgba(4, 189, 175, 1) 50%, rgba(12, 190, 137, 1) 100%);
+}
+
+@mixin gradient-horizontal-reversed() {
+	background: rgb(0,163,255);
+	background: linear-gradient(90deg, rgba(0, 163, 255, 1) 0%, rgba(4, 189, 175, 1) 50%, rgba(12, 190, 137, 1) 100%);
+}
+
+
+//
+// Gradient on texts
+//
+@mixin gradient-horizontal-text() {
+	background: rgb(248,73,27);
+	background: linear-gradient(90deg, rgba(248,73,27,1) 0%, rgba(241,47,63,1) 50%, rgba(220,24,96,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-horizontal-text-hover() {
+	background: rgb(220,24,96);
+	background: linear-gradient(90deg, rgba(220,24,96,1) 0%, rgba(241,47,63,1) 50%, rgba(248,73,27,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-horizontal-text-reversed() {
+	background: rgb(0,163,255);
+	background: linear-gradient(90deg, rgba(0, 163, 255, 1) 0%, rgba(4, 189, 175, 1) 50%, rgba(12, 190, 137, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-horizontal-text-hover-reversed() {
+	background: rgb(0,163,255);
+	background: linear-gradient(90deg, rgba(0, 163, 255, 1) 0%, rgba(4, 189, 175, 1) 50%, rgba(12, 190, 137, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

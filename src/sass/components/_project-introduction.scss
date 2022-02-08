@@ -1,0 +1,74 @@
+//
+// Introduction on the Project-template
+//
+.project-introduction {
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    h1 {
+        text-align: right;
+        font-size: rem(56px);
+        line-height: 1;
+        color: $colorSand-light;
+        word-break: break-word;
+    }
+
+    h2 { 
+        margin-top: -45px; 
+    }
+    .button-liquid { margin-top: 40px; }
+    .scroll-down { margin-bottom: -36px; }
+}
+
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .project-introduction {
+        padding-top: 250px;
+        padding-bottom: 250px;
+
+        h1 { font-size: rem(120px); }
+        h2 { margin-top: -82px; }
+        .scroll-down { margin-bottom: -46px; }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .project-introduction {
+        padding-top: 200px;
+        padding-bottom: 200px;
+        margin-bottom: -4.5vh;
+        
+        h1 { font-size: rem(200px); }
+
+        h2 {
+            width: calc(100% / 8 * 4 - 20px);
+            margin-top: -126px;
+            margin-left: calc(100% / 8 * 1 + 5px);
+        }
+
+        .button-liquid { margin-left: calc(100% / 8 * 1 + 5px); }
+        .scroll-down { margin-bottom: 8px; }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .project-introduction {
+        padding-top: 300px;
+        padding-bottom: 350px;
+
+        h1 { font-size: rem(280px); }
+        h2 { margin-top: -146px; }
+    }
+}

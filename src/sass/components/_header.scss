@@ -1,0 +1,229 @@
+//
+// Header
+//
+header {
+	position: fixed;
+	width: 56px;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 99999;
+	mix-blend-mode: difference;
+
+	.header-wrapper {
+		position: relative;
+		width: inherit;
+		height: inherit;
+	}
+
+	#page-progress {
+		position: absolute;
+		top: 0;
+		left: 55px;
+		width: 1px;
+		height: 0%;
+		z-index: 999;
+		transition: width 0.2s ease;
+		@include gradient-horizontal-reversed();
+	}
+
+	.logo {
+		width: 40px;
+		height: 40px;
+		display: block;
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		border-radius: 50px;
+		@include gradient-vertical-reversed();
+
+		#logo-icon {
+			position: relative;
+			height: 100%;
+			width: 100%;
+			@include center(-50%, -50%);
+			@include svg($icon-mschristensen, $colorTrueBlack, 20px);
+		}
+	}
+
+	.navigation-main {
+		display: flex;
+		flex-wrap: nowrap;
+		@include center-rotate(-50%, -50%, -90deg);
+
+		a {
+			margin-left: 40px;
+			position: relative;
+			display: inline-block;
+			color: $colorGrey;
+			overflow: hidden;
+			background: linear-gradient(to right,#00A3FF,#04BDAF 25%,#0CBE89 50%, $colorGrey 50% );
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-size: 200% 100%;
+			background-position: 100%;
+			transition: background-position 0.5s ease;
+
+			&.active { @include gradient-horizontal-text-hover-reversed(); }
+			
+			&:nth-child(1) { order: 3; }
+			&:nth-child(2) { order: 2; }
+			&:nth-child(3) {
+				order: 1;
+				margin-left: 0;
+			}
+		}
+	}
+
+	.navigation-some {
+		position: absolute;
+		bottom: 8px;
+		left: 8px;
+
+    	a {
+			position: relative;
+			width: 40px;
+			height: 40px;
+			display: block;
+			background: transparent;
+			border-radius: 50px;
+
+      		&:first-child { margin-bottom: 5px; }
+
+			.icon {
+				width: 16px;
+				height: 16px;
+				display: block;
+				@include center(-50%, -50%);
+
+        		&.linkedin { @include svg($icon-linkedin, $colorGrey, 14px); }
+    			&.behance { @include svg($icon-behance, $colorGrey, 16px); }
+      		}
+		}
+  	}
+	  // Progress Bar Style
+	.progress {
+		position: absolute;
+		top: 0px;
+		right: 0;
+		border: none;
+		z-index: 99999;
+		bottom: 0;
+		background: #59554d;
+	}
+	.progress span {
+		display: block;
+		background: linear-gradient(to top, #00a3fc, #0abd8e);
+		height: -10%;
+		width: 1px;
+	}
+}
+
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+	header {
+		width: 72px;
+
+		#page-progress { left: 71px; }
+
+		.logo {
+			top: 16px;
+			left: 16px;
+		}
+
+		.navigation-main {
+			a { margin-left: 56px; }
+		}
+
+		.navigation-some {
+			bottom: 16px;
+			left: 16px;
+		}
+	}
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+	header {
+		.navigation-main {
+			a {
+				&:hover { background-position: 0% 100%; }
+			}
+		}
+
+		.navigation-some {
+			a {
+				-webkit-transition: all 2s cubic-bezier(0.24, 0.63, 0.5, 0.99);
+				transition: all 2s cubic-bezier(0.24, 0.63, 0.5, 0.99);
+
+				&:hover {
+					@include gradient-horizontal-reversed();
+	
+					.icon {
+						&.linkedin { @include svg($icon-linkedin, $colorTrueBlack, 14px); }
+						&.behance { @include svg($icon-behance, $colorTrueBlack, 16px); }
+					}
+				}
+			}
+		}
+	}
+}
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+	header {
+		width: 96px;
+
+		#page-progress { left: 95px; }
+
+		.logo {
+			width: 56px;
+			height: 56px;
+			top: 20px;
+			left: 20px;
+
+			#logo-icon { @include svg($icon-mschristensen, $colorTrueBlack, 26px); }
+		}
+
+		.navigation-main {
+			a {
+				font-size: rem(20px);
+				margin-left: 80px;
+			}
+		}
+
+		.navigation-some {
+			bottom: 20px;
+			left: 20px;
+
+			a {
+				width: 56px;
+				height: 56px;
+
+				.icon {
+					width: 24px;
+					height: 24px;
+	
+					&.linkedin { @include svg($icon-linkedin, $colorGrey, 20px); }
+					&.behance { @include svg($icon-behance, $colorGrey, 24px); }
+				}
+
+				&:hover {
+					.icon {
+						&.linkedin { @include svg($icon-linkedin, $colorTrueBlack, 20px); }
+						&.behance { @include svg($icon-behance, $colorTrueBlack, 24px); }
+					}
+				}
+			}
+		}
+	}
+}

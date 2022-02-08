@@ -1,0 +1,200 @@
+//
+// Style guide on Project-templates
+//
+.styleguide {
+    padding-top: 200px;
+
+    ul {
+        list-style: none;
+
+        h4.indicator {
+            color: $colorGrey;
+            padding-top: 8px;
+        }
+
+        &.color-palette,
+        &.typography {
+            margin-top: 56px;
+            display: table;
+
+            li { margin-top: 16px; }
+        }
+
+        &.color-palette {
+            li {
+                div {
+                    display: block;
+                    width: 48px;
+                    height: 48px;
+                    margin-left: 8px;
+                    border-radius: 100%;
+                    float: left;
+
+                    &:first-child { margin-left: 0; }
+                }
+            }
+        }
+
+        &.typography {
+            li {
+                ul {
+                    li { 
+                        margin-top: 72px; 
+                        
+                        &:first-child{ margin-top: 40px; }
+                    }
+                }
+
+                p {
+                    letter-spacing: 8px;
+                    padding-top: 32px;
+                    word-break: break-all;
+
+                    &:first-child { padding-top: 0; }
+                }
+            }
+        }
+    }
+}
+
+//
+// Mobile specific
+//
+@media screen and (max-width: 400px) {
+    .styleguide {
+        .project-title {
+            font-size: rem(40px);
+            word-break: break-all;
+        }
+    }
+}
+
+
+//
+// Tablet specific
+//
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .styleguide {
+        h2 { 
+            &.project-title { font-size: rem(120px); }
+        }
+    }
+}
+
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .styleguide {
+        padding-top: 300px;
+
+        ul {
+            &.color-palette,
+            &.typography {
+                margin-top: 120px;
+            }
+
+            &.color-palette {
+                li {
+                    div {
+                        display: block;
+                        width: 80px;
+                        height: 80px;
+                        margin-left: 24px;
+                    }
+                }
+            }
+
+            &.typography {
+                li {
+                    ul {
+                        li { margin-top: 120px; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Desktop
+//
+@media screen and (min-width: 1024px) {
+    .styleguide {
+        h2 {
+            width: calc(100% / 8 * 5 - 15px);
+            margin-left: calc(100% / 8 * 1 + 5px);
+        }
+
+        ul {
+            &.color-palette,
+            &.typography {
+                margin-top: 0;
+                @include flex(space-between);
+                @include flex-align(flex-start);
+
+                li {
+                    margin-top: 120px;
+
+                    &:last-child { width: calc(100% / 8 * 5 - 15px); }
+                    &:first-child {
+                        width: calc(100% / 8 * 2 - 30px);
+                        margin-left: calc(100% / 8 * 1 + 5px);
+                    }
+                }
+            }
+
+            &.color-palette {
+                li {
+                    div {
+                        display: block;
+                        width: 100px;
+                        height: 100px;
+                        margin-left: 24px;
+                    }
+                }
+            }
+
+            &.typography {
+                li {
+                    ul {
+                        width: 100%;
+    
+                        li:first-child {
+                            margin-top: 0;
+                            margin-left: 0;
+                        }
+    
+                        li:first-child,
+                        li:last-child {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .styleguide {
+        ul {
+            &.color-palette {
+                li {
+                    div {
+                        display: block;
+                        width: 160px;
+                        height: 160px;
+                        margin-left: 40px;
+                    }
+                }
+            }
+        }
+    }
+}

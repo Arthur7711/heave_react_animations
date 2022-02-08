@@ -1,0 +1,63 @@
+//
+// Scroll-gallery on Project-templates
+//
+#scroll-gallery-top { overflow: hidden;}
+#scroll-gallery-bottom { overflow-x: hidden; }
+
+.scroll-gallery {
+	width: 100vw;
+	margin-left: -56px;
+	--tiles-height: 150vw;
+	height: var(--tiles-height);
+	position: relative;
+
+	&.alternative {
+		.sg-wrapper { transform: translate3d(-50%,-50%, 0) rotate(-6deg); }
+	}
+
+	.sg-wrapper {
+		width: 150%;
+		--tileswrap-height: calc(var(--tiles-height) * 1.8);
+		transform: translate3d(-50%,-50%, 0) rotate(22deg);
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		.sg-row {
+			display: flex;
+
+			.sg-image {
+				flex: none;
+				width: 48vw;
+				height: 27vw;
+				margin: 2vw;
+
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+	}
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+	.scroll-gallery { margin-left: -72px; }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+	.scroll-gallery { margin-left: -96px; }
+}

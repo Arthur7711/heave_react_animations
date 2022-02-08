@@ -1,0 +1,42 @@
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  -webkit-transition-duration: 35ms;
+  transition-duration: 35ms;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  will-change: width, height, transform, border;
+  z-index: 99999;
+  pointer-events: none;
+  background-image: linear-gradient(180deg, #f14403cc, #e73159cc);
+}
+.hovered {
+  width: 50px;
+  height: 50px;
+}
+
+.hovered2 {
+  width: 60px;
+  height: 60px;
+  &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      background-image: url(../../assets/images/other/cursor_arrow.svg);
+      background-size: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+}
+.empty_ring{
+  width: 0;
+  height: 0;
+}

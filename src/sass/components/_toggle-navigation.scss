@@ -1,0 +1,141 @@
+//
+// Toggle navigation on the About-page
+//
+.insights {
+	margin-top: 160px;
+	
+	.toggle-navigation {
+		position: relative;
+		width: 100vw;
+		margin-top: 80px;
+		margin-left: -56px;
+		padding-left: 56px;
+		padding-top: 45px;
+		padding-bottom: 45px;
+		background-color: $colorSand-light;
+		border-bottom: 2px solid $colorSand-dark;
+		overflow-y: hidden;
+		-ms-overflow-style: none;
+  		scrollbar-width: none;
+		  position: relative;
+
+		&::before {
+			content: 'Drag and explore';
+			font-family: 'Mollie Glaston', 'Hahmlet', serif;
+			font-weight: 100;
+			font-size: rem(56px);
+			color: $colorSand-dark;
+			width: max-content;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			margin-bottom: -15px;
+		}
+
+		&::-webkit-scrollbar { display: none; }
+
+		a {
+			margin-left: 56px;
+			position: relative;
+			display: inline;
+			color: $colorGrey;
+			overflow: hidden;
+			background: linear-gradient(to right,#F8491B,#F12F3F 25%,#DC1860 50%, $colorGrey 50% );
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-size: 200% 100%;
+			background-position: 100%;
+			transition: background-position 0.5s ease;
+
+			&:first-child { margin-left: 0; }
+			&:last-child { margin-right: 120px; }
+			&.toggle_active {
+				@include gradient-horizontal-text();
+			}
+		}
+		.toggle-div{
+			position: relative;
+		}
+		span.navigation-underline {
+			position: absolute;
+			left: 0;
+			bottom: -45px;
+			width: 211px;
+			height: 2px;
+			transform-origin: left;
+			animation: line-appearing 0.5s ease-out forwards;
+			background: #f8491b;
+			background: linear-gradient(90deg, #f8491b 0%, #f12f3f 50%, #dc1860 100%);
+		}
+	}
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+	.insights {
+		margin-top: 100px;
+
+		.toggle-navigation {
+			width: 100vw;
+			margin-top: 80px;
+			margin-left: -72px;
+			padding-left: 72px;
+
+			&::before { display: none; }
+
+			a {
+				&:last-child { margin-right: auto; }
+			}
+		}
+	}
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+	.insights {
+		h2 {
+			width: calc(100% / 8 * 6 - 10px);
+			margin-left: calc(100% / 8 * 1 + 5px);
+		}
+		
+		.toggle-navigation {
+			width: 100vw;
+			margin-top: 80px;
+			margin-left: -72px;
+			padding-left: 72px;
+
+			&::before { display: none; }
+
+			a {
+				margin-left: 80px;
+
+				&:first-child { margin-left: calc(100% / 8 * 1 + 5px); }
+				&:hover { background-position: 0% 100%; }
+			}
+		}
+	}
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+	.insights {
+		margin-top: 300px;
+		
+		.toggle-navigation {
+			margin-top: 120px;
+			margin-left: -96px;
+			padding-left: 96px;
+			padding-top: 64px;
+			padding-bottom: 64px;
+		}
+	}
+}

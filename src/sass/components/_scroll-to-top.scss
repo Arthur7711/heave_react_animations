@@ -1,0 +1,65 @@
+//
+// Scroll to top
+//
+
+.scrolled .scroll-up {
+    opacity: 1;
+    visibility: visible;
+}
+.scroll-up {
+	position: fixed;
+    width: 200px;
+    height: 200px;
+    display: block;
+	bottom: 0;
+	right: 0;
+	margin-bottom: -36px;
+	margin-right: -48px;
+	z-index: 999;
+	opacity: 0;
+    visibility: hidden;
+
+	&::before {
+		content: '';
+		width: 24px;
+		height: 48px;
+		@include svg($icon-arrow-down, $colorSand-dark, 100%);
+		@include center-up(-50%,-50%, 180deg);
+	}
+
+	&::after {
+		content: url("../../assets/illustrations/scroll-to-top-normal.svg");
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-animation: rotating 30s linear infinite;
+		-moz-animation: rotating 30s linear infinite;
+		-ms-animation: rotating 30s linear infinite;
+		-o-animation: rotating 30s linear infinite;
+		animation: rotating 30s linear infinite;
+	}
+    a {
+        position: absolute;
+        inset: 0;
+        z-index: 9;
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {}

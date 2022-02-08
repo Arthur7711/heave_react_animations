@@ -1,0 +1,37 @@
+//
+// Button gradient
+//
+a {
+    &.button-gradient {
+		position: relative;
+		display: inline-block;
+		color: $colorBlack;
+		overflow: hidden;
+		background: linear-gradient(to right, $colorBlack 50%, #DC1860 50%, #F12F3F 25%, #F8491B);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 200% 100%;
+		background-position: 100%;
+		transition: background-position .5s ease;
+
+		&.active { @include gradient-horizontal-text-hover(); }
+		&:hover { background-position: 0% 100%; }
+	}
+
+	&.button-gradient-reversed {
+		position: relative;
+		display: inline-block;
+		color: $colorBlack-alt;
+		overflow: hidden;
+		background: linear-gradient(to right, #F8491B, #F12F3F 25%, #DC1860 50%, $colorBlack-alt 50%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 200% 100%;
+		background-position: 100%;
+		transition: background-position .5s ease;
+
+		&:hover { background-position: 0% 100%; }
+	}
+}

@@ -1,0 +1,88 @@
+//
+// Styling required for the Work-page
+//
+@import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;200;300;400;500;600;700;800;900&display=swap");
+.hori_Scroll {
+  display: none;
+}
+
+.work-page {
+  font-family: "Hahmlet", serif;
+  position: relative;
+  width: 100vw;
+  // height: 100vh;
+  // object-fit: cover;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  background-position: center;
+  background: no-repeat;
+  nav {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    z-index: 999;
+    position: relative;
+    .this-item {
+      color: #999999;
+      font-style: normal;
+      font-weight: 200;
+      text-align: center;
+      line-height: auto;
+      opacity: 0.6;
+      cursor: pointer;
+      // margin: 25px 0;
+      transition: all 0.5s ease-out;
+      font-size: rem(32px);
+      scroll-snap-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .work-page {
+    padding-left: 72px;
+
+    nav {
+      .this-item {
+        font-size: rem(50px);
+        line-height: 150px;
+      }
+    }
+  }
+}
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+  .work-page {
+    nav {
+      .this-item {
+        font-size: rem(60px);
+        line-height: 180px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .work-page {
+    background-size: cover;
+    .this-item {
+      font-size: rem(120px);
+      line-height: 150px;
+    }
+  }
+}
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+  .work-page {
+    .this-item {
+      font-size: rem(150px);
+    }
+  }
+}

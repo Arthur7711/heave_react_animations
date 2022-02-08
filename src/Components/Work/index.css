@@ -1,0 +1,39 @@
+.Slideshow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.Slideshow img {
+  display: none;
+}
+
+.Slideshow video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  display: none;
+}
+
+/* curtains canvas */
+
+.curtains-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

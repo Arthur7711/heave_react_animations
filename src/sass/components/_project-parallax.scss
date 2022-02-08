@@ -1,0 +1,42 @@
+//
+// Parallax image on the project-template
+//
+.parallax-image {
+    width: 100vw;
+    height: 150vh;
+    margin-left: -56px;
+    overflow: hidden;
+
+    img {
+        width: auto;
+        height: 100%;
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .parallax-image { margin-left: -72px; }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .parallax-image {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .parallax-image { margin-left: -96px; }
+}

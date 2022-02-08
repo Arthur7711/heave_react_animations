@@ -1,0 +1,89 @@
+//
+// Buttons
+//
+a {
+	&.button-liquid {
+		position: relative;
+		padding: 20px 46px 20px 50px;
+		display: table;
+		overflow: hidden;
+		border-radius: 40px;
+		text-align: center;
+
+		span {
+			position: relative;
+			color: #fff;
+			letter-spacing: 4px;
+			z-index: 1;
+		}
+
+		.liquid {
+			position: absolute;
+			top: -80px;
+			left: 0;
+			width: 100%;
+			height: 200px;
+			background: linear-gradient(90deg, #f8491b 0%, #f12f3f 50%, #dc1860 100%);
+			transition: 0.5s;
+
+			&:before,
+			&:after {
+				content: "";
+				width: 175%;
+				height: 175%;
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translate(-50%, -75%);
+				background: linear-gradient(90deg,#f8491b 0%, #f12f3f 50%,#dc1860 100%);
+			}
+
+			&:before {
+				border-radius: 45%;
+				background: rgba(0, 0, 20, 0.6);
+				animation: animate 5s linear infinite;
+			}
+
+			&:after {
+				border-radius: 40%;
+				background: rgba(0, 0, 20, 0.4);
+				animation: animate 10s linear infinite;
+			}
+	  	}
+
+		&:hover {
+			.liquid { top: -140px; }
+		}
+  	}
+}
+
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+	a {
+		&.button-liquid { font-size: rem(14px); }
+	}
+}
+
+
+//
+// Liquid button animation
+//
+@keyframes animate {
+	0% { transform: translate(-50%, -75%) rotate(0deg); }
+	100% { transform: translate(-50%, -75%) rotate(360deg); }
+}

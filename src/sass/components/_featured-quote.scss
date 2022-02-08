@@ -1,0 +1,75 @@
+//
+// Featured quote on the About-page
+//
+.featured-quote {
+    position: relative;
+    width: 100vw;
+    left: -56px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    padding-left: 56px;
+    background-color: $colorBlack;
+
+    .container {
+        width: calc(100vw - 56px - 48px);
+        margin: 0 auto;
+    }
+
+    h3 { 
+        color: $colorSand-normal;
+        line-height: 1.5;
+        overflow: hidden;
+    }
+
+    h4 {
+        color: $colorSand-dark;
+        padding-top: 24px;
+    }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .featured-quote {
+        left: -72px;
+        padding-top: 30vh;
+        padding-bottom: 30vh;
+        padding-left: 72px;
+        
+        .container { width: calc(100vw - 72px - 96px); }
+        h3 { line-height: 1.7; }
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .featured-quote {
+        .container { width: calc(100vw - 72px - 9vw); }
+
+        h3, h4 {
+            width: calc(100% / 8 * 6 - 10px);
+            margin-left: calc(100% / 8 * 1 + 5px);
+        }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .featured-quote {
+        left: -96px;
+        padding-left: 96px;
+
+        .container { width: calc(100vw - 96px - 12vw); }
+
+        h3 { font-size: rem(64px); }
+        h3, h4 { margin-left: calc(100% / 8 * 1); }
+        h4 { padding-top: 40px; }
+    }
+}

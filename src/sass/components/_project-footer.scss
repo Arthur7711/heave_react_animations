@@ -1,0 +1,48 @@
+//
+// Footer on the Project-template-page
+//
+.project-footer {
+    padding-top: 240px;
+    padding-bottom: 120px;
+    
+    h2 {
+        padding-top: 16px;
+        padding-bottom: 40px;
+    }
+
+    h4 { color: $colorGrey; }
+}
+
+//
+// Tablet
+//
+@media screen and (min-width: 768px) {
+    .project-footer {
+        padding-top: 240px;
+        padding-bottom: 120px;
+    }
+}
+
+
+//
+// Laptop / Desktop
+//
+@media screen and (min-width: 1024px) {
+    .project-footer {
+        h2 { width: calc(100% / 8 * 5 - 15px); }
+        h4, h2, a { margin-left: calc(100% / 8 * 1 + 5px); }
+    }
+}
+
+
+//
+// Large screens
+//
+@media screen and (min-width: 1920px) {
+    .project-footer {
+        padding-top: 300px;
+        padding-bottom: 160px;
+        
+        h2 { width: calc(100% / 8 * 6 - 10px); }
+    }
+}
