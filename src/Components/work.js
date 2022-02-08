@@ -46,9 +46,20 @@ function Work(props) {
     { name: "WestEnd London", href: "#21", imgId: img21 },
   ]);
 
-  function MouseOut(event) {
-    event.target.style.color = "#999999";
+  const [imageState, setImageState] = useState(img1);
+
+  function MouseOver(event, data) {
+    event.target.parentNode.parentNode.style.boxShadow =
+      "inset 10000px -5000px 1000px 0px #000000";
+    event.target.parentNode.parentNode.style.boxShadow = "none";
+    event.target.parentNode.parentNode.style.transition =
+      "all 300ms ease-in-out";
+    setImageState(data);
   }
+
+  // function MouseOut(event) {
+  //   event.target.style.color = "#999999";
+  // }
   const handleScroll = (e) => {
     if (
       e &&
@@ -88,7 +99,12 @@ function Work(props) {
       {/* Imp Files */}
 
       {/* Start Work Page Code from here */}
-      <section className="work-page">
+      <section
+        className="work-page"
+        style={{
+          backgroundImage: imageState && `url(${imageState})`,
+        }}
+      >
         <nav onScroll={(e) => handleScroll(e)} id="element" className="scroll">
           {data &&
             data.map((el, i) => (
@@ -96,8 +112,8 @@ function Work(props) {
                 className="this-item doesSelected"
                 key={i}
                 data-index={i}
-                // onMouseMove={(event) => onClick(event, i)}
-                onMouseOut={(e) => MouseOut(e)}
+                onMouseMove={(event) => MouseOver(event, el.imgId)}
+                // onMouseOut={(e) => MouseOut(e, el.imgId)}
               >
                 {el.name}
               </div>
