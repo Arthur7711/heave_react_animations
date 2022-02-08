@@ -78,7 +78,8 @@ function Work(props) {
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
           el.style.color = "red";
-          console.log(el);
+          setImageState(el.getAttribute("data-info"));
+          // console.log(el.getAttribute("data-info"));
         } else {
           el.style.color = "#999999";
         }
@@ -111,7 +112,7 @@ function Work(props) {
               <div
                 className="this-item doesSelected"
                 key={i}
-                data-index={i}
+                data-info={el.imgId}
                 onMouseMove={(event) => MouseOver(event, el.imgId)}
                 // onMouseOut={(e) => MouseOut(e, el.imgId)}
               >
