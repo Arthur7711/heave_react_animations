@@ -1,7 +1,7 @@
 // import "./App.scss";
 import React, { useEffect, useRef, useState } from "react";
 import Header from "./Components/Layout/header";
-import Work from "./Components/Work/index";
+import Work from "./Components/work.js";
 import About from "./Components/about";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NotFound from "./Components/notFound";
@@ -687,30 +687,31 @@ function App(props) {
   };
   const loader = document.querySelector(".loader-container");
   const showLoader = () => {
-	const timer = setTimeout(() => {
-		loader.classList.add("loader-hide");
-		}, 400);
-
-	};
-  const hideLoader = () =>{
-	const timer = setTimeout(() => {
-	loader.classList.remove("loader--hide");
-	}, 5000);
-	const ld_gray = gsap.timeline({});
+    const timer = setTimeout(() => {
+      loader.classList.add("loader-hide");
+    }, 400);
+  };
+  const hideLoader = () => {
+    const timer = setTimeout(() => {
+      loader.classList.remove("loader--hide");
+    }, 5000);
+    const ld_gray = gsap.timeline({});
     const loaderLayer = document.querySelector(".loader-container");
-	ld_gray.fromTo ( loaderLayer, {
-			duration: 2.5,
-			top:"100%",
-			ease: 'power1.out'
-		},
-		{
-			duration: 2.5,
-			delay: 0.5,
-			top:"-150%",
-			ease: 'power1.out'
-		},);
-
-  }
+    ld_gray.fromTo(
+      loaderLayer,
+      {
+        duration: 2.5,
+        top: "100%",
+        ease: "power1.out",
+      },
+      {
+        duration: 2.5,
+        delay: 0.5,
+        top: "-150%",
+        ease: "power1.out",
+      }
+    );
+  };
   useEffect(() => {
     hideLoader();
   });

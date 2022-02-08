@@ -46,22 +46,10 @@ function Work(props) {
     { name: "WestEnd London", href: "#21", imgId: img21 },
   ]);
 
-  const [imageState, setImageState] = useState(img1);
-
-  function MouseOver(event, data) {
-    event.target.style.color = "red";
-    event.target.parentNode.parentNode.style.boxShadow =
-      "inset 10000px -5000px 1000px 0px #000000";
-    event.target.parentNode.parentNode.style.boxShadow = "none";
-    event.target.parentNode.parentNode.style.transition =
-      "all 300ms ease-in-out";
-    setImageState(data);
-  }
-
-  function MouseOut(event, data) {
+  function MouseOut(event) {
     event.target.style.color = "#999999";
-    setImageState(data);
   }
+  const arr = document.querySelectorAll(".doesSelected");
   const handleScroll = (e) => {
     if (
       e &&
@@ -71,15 +59,28 @@ function Work(props) {
     ) {
       setData([...data, ...data]);
     }
-    // if (e)
-    //   console.log(
-    //     e.target.scrollTop + e.target.offsetHeight,
-    //     e.target.scrollHeight
-    //   );
+    // window.innerHeight
+    if (e) {
+      arr.forEach((el) => {
+        if (
+          el.getBoundingClientRect().top < window.innerHeight / 2 + 50 &&
+          el.getBoundingClientRect().top > window.innerHeight / 2 - 100
+        ) {
+          el.style.color = "red";
+          console.log(el);
+        } else {
+          el.style.color = "#999999";
+        }
+      });
+    }
   };
   useEffect(() => {
     handleScroll();
   }, []);
+
+  // useEffect(() => {
+  //   handleScroll();
+  // }, [data]);
 
   return (
     <>
@@ -91,20 +92,38 @@ function Work(props) {
       {/* Imp Files */}
 
       {/* Start Work Page Code from here */}
-      <section
-        className="work-page"
-        style={{
-          backgroundImage: imageState && `url(${imageState})`,
-        }}
-      >
+      <section className="work-page">
+        {/* <Plane
+          className="Slideshow"
+          // plane init parameters
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={uniforms}
+          // plane events
+          onReady={onReady}
+        >
+          <div ref={slideshowInner}>
+            {data &&
+              data.map((el, i) => (
+                <video
+                  key={i}
+                  playsInline
+                  muted
+                  src={el.imgId}
+                  data-sampler={i < 3 ? dataSampler[i] : "texture" + (i + 1)}
+                />
+              ))}
+          </div>
+        </Plane> */}
         <nav onScroll={(e) => handleScroll(e)} id="element" className="scroll">
           {data &&
             data.map((el, i) => (
               <div
-                className="this-item"
+                className="this-item doesSelected"
                 key={i}
-                onMouseOver={(event) => MouseOver(event, el.imgId)}
-                onMouseOut={(event) => MouseOut(event, el.imgId)}
+                data-index={i}
+                // onMouseMove={(event) => onClick(event, i)}
+                onMouseOut={(e) => MouseOut(e)}
               >
                 {el.name}
               </div>

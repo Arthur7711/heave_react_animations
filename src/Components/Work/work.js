@@ -1,7 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Plane, useCurtains } from "react-curtains";
-import gsap from "gsap";
-import { vertexShader, fragmentShader } from "./shaders/shaders";
+import React, { useEffect, useState } from "react";
 
 import img1 from "../../assets/videos/work/mschristensen-august-krogh-hero.mp4";
 import img2 from "../../assets/videos/work/mschristensen-baernholdt-hero.mp4";
@@ -24,14 +21,13 @@ import img18 from "../../assets/videos/work/mschristensen-pointvoucher-studios-h
 import img19 from "../../assets/videos/work/mschristensen-spotthespy-hero.mp4";
 import img20 from "../../assets/videos/work/mschristensen-superbrugsen-hero.mp4";
 import img21 from "../../assets/videos/work/mschristensen-westend-hero.mp4";
-console.log(vertexShader);
 
 function Work(props) {
-  useCurtains((curtains) => {
-    console.log(curtains);
-    // use gsap ticker to render our curtains scene
-    gsap.ticker.add(curtains.render.bind(curtains));
-  });
+  // useCurtains((curtains) => {
+  //   console.log(curtains);
+  //   // use gsap ticker to render our curtains scene
+  //   gsap.ticker.add(curtains.render.bind(curtains));
+  // });
   const [data, setData] = useState([
     { name: "Bærnholdt", href: "#1", imgId: img1 },
     { name: "BioInnovation Institute", href: "#2", imgId: img2 },
@@ -58,83 +54,83 @@ function Work(props) {
 
   // const [imageState, setImageState] = useState(img1);
 
-  const [plane, setPlane] = useState(null);
+  // const [plane, setPlane] = useState(null);
 
-  const slideshowInner = useRef(null);
+  // const slideshowInner = useRef(null);
 
-  const myRef = useRef();
+  // const myRef = useRef();
 
   // slideshow states
-  const [activeTexture, setActiveTexture] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  // const [activeTexture, setActiveTexture] = useState(0);
+  // const [isRunning, setIsRunning] = useState(false);
 
-  const dataSampler = ["firstTexture", "secondTexture", "thirdTexture"];
-  const uniforms = {
-    transitionTimer: {
-      name: "uTransitionTimer",
-      type: "1f",
-      value: 0,
-    },
-    fadeIn: {
-      name: "uFadeIn",
-      type: "1f",
-      value: 0,
-    },
-    timer: {
-      name: "uTimer",
-      type: "1f",
-      value: 0,
-    },
-    to: {
-      name: "uTo",
-      type: "1f",
-      value: 0,
-    },
-    from: {
-      name: "uFrom",
-      type: "1f",
-      value: 0,
-    },
-  };
+  // const dataSampler = ["firstTexture", "secondTexture", "thirdTexture"];
+  // const uniforms = {
+  //   transitionTimer: {
+  //     name: "uTransitionTimer",
+  //     type: "1f",
+  //     value: 0,
+  //   },
+  //   fadeIn: {
+  //     name: "uFadeIn",
+  //     type: "1f",
+  //     value: 0,
+  //   },
+  //   timer: {
+  //     name: "uTimer",
+  //     type: "1f",
+  //     value: 0,
+  //   },
+  //   to: {
+  //     name: "uTo",
+  //     type: "1f",
+  //     value: 0,
+  //   },
+  //   from: {
+  //     name: "uFrom",
+  //     type: "1f",
+  //     value: 0,
+  //   },
+  // };
 
-  const onReady = (plane) => {
-    gsap.to(plane.uniforms.fadeIn, {
-      duration: 0,
-      value: 1,
-    });
-    setPlane(plane);
-    plane.videos[0].play();
-    setActiveTexture(0);
-  };
+  // const onReady = (plane) => {
+  //   gsap.to(plane.uniforms.fadeIn, {
+  //     duration: 0,
+  //     value: 1,
+  //   });
+  //   setPlane(plane);
+  //   plane.videos[0].play();
+  //   setActiveTexture(0);
+  // };
 
-  const onClick = (event, to) => {
-    if (isRunning || to == activeTexture) return;
+  // const onClick = (event, to) => {
+  //   if (isRunning || to == activeTexture) return;
 
-    setIsRunning(true);
+  //   setIsRunning(true);
 
-    plane.uniforms.to.value = to;
+  //   plane.uniforms.to.value = to;
 
-    let fake = { progress: 0 };
-    gsap.to(fake, {
-      duration: 1.75,
-      progress: 1,
-      easing: "power2.in",
-      onStart: () => {
-        plane.videos[to].play();
-        setActiveTexture(to);
-      },
-      onUpdate: () => {
-        if (fake.progress === 1) {
-          plane.uniforms.from.value = to;
-        }
-        plane.uniforms.transitionTimer.value = fake.progress;
-      },
-      onComplete: () => {
-        plane.uniforms.from.value = to;
-        setIsRunning(false);
-      },
-    });
-  };
+  //   let fake = { progress: 0 };
+  //   gsap.to(fake, {
+  //     duration: 1.75,
+  //     progress: 1,
+  //     easing: "power2.in",
+  //     onStart: () => {
+  //       plane.videos[to].play();
+  //       setActiveTexture(to);
+  //     },
+  //     onUpdate: () => {
+  //       if (fake.progress === 1) {
+  //         plane.uniforms.from.value = to;
+  //       }
+  //       plane.uniforms.transitionTimer.value = fake.progress;
+  //     },
+  //     onComplete: () => {
+  //       plane.uniforms.from.value = to;
+  //       setIsRunning(false);
+  //     },
+  //   });
+  // };
 
   function MouseOut(event) {
     event.target.style.color = "#999999";
@@ -157,6 +153,7 @@ function Work(props) {
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
           el.style.color = "red";
+          console.log(el);
         } else {
           el.style.color = "#999999";
         }
@@ -166,6 +163,10 @@ function Work(props) {
   useEffect(() => {
     handleScroll();
   }, []);
+
+  // useEffect(() => {
+  //   handleScroll();
+  // }, [data]);
 
   return (
     <>
@@ -178,7 +179,7 @@ function Work(props) {
 
       {/* Start Work Page Code from here */}
       <section className="work-page">
-        <Plane
+        {/* <Plane
           className="Slideshow"
           // plane init parameters
           vertexShader={vertexShader}
@@ -199,7 +200,7 @@ function Work(props) {
                 />
               ))}
           </div>
-        </Plane>
+        </Plane> */}
         <nav onScroll={(e) => handleScroll(e)} id="element" className="scroll">
           {data &&
             data.map((el, i) => (
@@ -207,7 +208,7 @@ function Work(props) {
                 className="this-item doesSelected"
                 key={i}
                 data-index={i}
-                onMouseMove={(event) => onClick(event, i)}
+                // onMouseMove={(event) => onClick(event, i)}
                 onMouseOut={(e) => MouseOut(e)}
               >
                 {el.name}
