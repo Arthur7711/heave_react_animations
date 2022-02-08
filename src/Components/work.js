@@ -49,7 +49,6 @@ function Work(props) {
   function MouseOut(event) {
     event.target.style.color = "#999999";
   }
-  const arr = document.querySelectorAll(".doesSelected");
   const handleScroll = (e) => {
     if (
       e &&
@@ -61,6 +60,7 @@ function Work(props) {
     }
     // window.innerHeight
     if (e) {
+      const arr = document.querySelectorAll(".doesSelected");
       arr.forEach((el) => {
         if (
           el.getBoundingClientRect().top < window.innerHeight / 2 + 50 &&
@@ -78,10 +78,6 @@ function Work(props) {
     handleScroll();
   }, []);
 
-  // useEffect(() => {
-  //   handleScroll();
-  // }, [data]);
-
   return (
     <>
       {/* Imp Files */}
@@ -93,28 +89,6 @@ function Work(props) {
 
       {/* Start Work Page Code from here */}
       <section className="work-page">
-        {/* <Plane
-          className="Slideshow"
-          // plane init parameters
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
-          uniforms={uniforms}
-          // plane events
-          onReady={onReady}
-        >
-          <div ref={slideshowInner}>
-            {data &&
-              data.map((el, i) => (
-                <video
-                  key={i}
-                  playsInline
-                  muted
-                  src={el.imgId}
-                  data-sampler={i < 3 ? dataSampler[i] : "texture" + (i + 1)}
-                />
-              ))}
-          </div>
-        </Plane> */}
         <nav onScroll={(e) => handleScroll(e)} id="element" className="scroll">
           {data &&
             data.map((el, i) => (
