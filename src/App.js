@@ -14,6 +14,8 @@ import SlideinBlock from "./Components/Modals/slideinBlock";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import workNow from "./Components/workPage";
+
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App(props) {
@@ -712,6 +714,7 @@ function App(props) {
       }
     );
   };
+  // black element
   useEffect(() => {
     hideLoader();
   });
@@ -731,7 +734,8 @@ function App(props) {
                   <Route exact path="/" component={About}>
                     <About menu_click={cookMenu} />
                   </Route>
-                  <Route exact path="/work" component={Work} />
+                  {/* <Route exact path="/work" component={Work} /> */}
+                  <Route exact path="/work" component={workNow} />
                   <Route
                     exact
                     path="/project-template"
