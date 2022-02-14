@@ -3,6 +3,7 @@ import { Plane, useCurtains } from "react-curtains";
 import gsap from "gsap";
 import { vertexShader, fragmentShader } from "../shaders/shaders";
 import "./index.css";
+import "../../../sass/components/_work-page.scss";
 import img1 from "../../../assets/images/work/mschristensen-august-krogh-hero.webp";
 import img2 from "../../../assets/images/work/mschristensen-baernholdt-hero.webp";
 import img3 from "../../../assets/images/work/mschristensen-bibelselskabet-hero.webp";
@@ -63,6 +64,9 @@ function Slideshow() {
 
   const [imageState, setImageState] = useState(img1);
 
+  const activeTex = useRef(null);
+  const nextTex = useRef(null);
+
   const handleScroll = (e) => {
     if (
       e &&
@@ -83,7 +87,7 @@ function Slideshow() {
           el.style.color = "red";
           if (!isChanging.current && plane) {
             isChanging.current = true;
-      
+
             // check what will be next image
             let nextTextureIndex;
             if (activeTexture < maxTextures) {
@@ -93,7 +97,7 @@ function Slideshow() {
             }
             // apply it to our next texture
             nextTex.current.setSource(plane.images[nextTextureIndex]);
-      
+
             tween.current = gsap.to(plane.uniforms.transitionTimer, {
               duration: 1.75,
               value: 90,
@@ -101,9 +105,9 @@ function Slideshow() {
               onComplete: () => {
                 isChanging.current = false;
                 tween.current = null;
-      
+
                 plane.uniforms.transitionTimer.value = 0;
-      
+
                 const activeTextureIndex = nextTextureIndex;
                 // our next texture becomes our active texture
                 activeTex.current.setSource(plane.images[activeTextureIndex]);
@@ -135,9 +139,6 @@ function Slideshow() {
     };
   }, []);
 
-  const activeTex = useRef(null);
-  const nextTex = useRef(null);
-
   const uniforms = {
     transitionTimer: {
       name: "uTransitionTimer",
@@ -152,7 +153,6 @@ function Slideshow() {
   };
 
   const onReady = (plane) => {
-    console.log(plane, "planeee");
     setPlane(plane);
   };
 
@@ -252,7 +252,12 @@ function Slideshow() {
         </div>
         <div ref={slideshowInner}>
           <span>Click me !</span>
-          {data && data.map((el, i) => <img src={el.imgId} alt="" />)}
+          <img
+            src="https://www.curtainsjs.com/examples/medias/displacement.jpg"
+            data-sampler="displacement"
+            alt=""
+          />
+          {data && data.map((el, i) => <img key={i} src={el.imgId} alt="" />)}
         </div>
       </Plane>
     </>
