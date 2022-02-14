@@ -81,8 +81,37 @@ function Slideshow() {
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
           el.style.color = "red";
-          setImageState(el.getAttribute("data-info"));
-          // console.log(el.getAttribute("data-info"));
+          if (!isChanging.current && plane) {
+            isChanging.current = true;
+      
+            // check what will be next image
+            let nextTextureIndex;
+            if (activeTexture < maxTextures) {
+              nextTextureIndex = activeTexture + 1;
+            } else {
+              nextTextureIndex = 1;
+            }
+            // apply it to our next texture
+            nextTex.current.setSource(plane.images[nextTextureIndex]);
+      
+            tween.current = gsap.to(plane.uniforms.transitionTimer, {
+              duration: 1.75,
+              value: 90,
+              ease: "power2.inOut",
+              onComplete: () => {
+                isChanging.current = false;
+                tween.current = null;
+      
+                plane.uniforms.transitionTimer.value = 0;
+      
+                const activeTextureIndex = nextTextureIndex;
+                // our next texture becomes our active texture
+                activeTex.current.setSource(plane.images[activeTextureIndex]);
+                setActiveTexture(activeTextureIndex);
+              },
+            });
+          }
+          // setPlane(plane);
         } else {
           el.style.color = "#999999";
         }
@@ -123,6 +152,7 @@ function Slideshow() {
   };
 
   const onReady = (plane) => {
+    console.log(plane, "planeee");
     setPlane(plane);
   };
 
@@ -158,16 +188,6 @@ function Slideshow() {
       });
     }
   };
-
-  // function MouseOver(event, data) {
-  //   event.target.parentNode.parentNode.style.boxShadow =
-  //     "inset 10000px -5000px 1000px 0px #000000";
-  //   event.target.parentNode.parentNode.style.boxShadow = "none";
-  //   event.target.parentNode.parentNode.style.transition =
-  //     "all 300ms ease-in-out";
-  //   setImageState(data);
-  // }
-
   useCurtains(
     (curtains) => {
       if (plane) {
