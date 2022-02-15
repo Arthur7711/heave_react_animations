@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { vertexShader, fragmentShader } from "../shaders/shaders";
 import "./index.css";
 import "../../../sass/components/_work-page.scss";
+import LocomotiveScroll from "locomotive-scroll";
 import img1 from "../../../assets/images/work/mschristensen-august-krogh-hero.webp";
 import img2 from "../../../assets/images/work/mschristensen-baernholdt-hero.webp";
 import img3 from "../../../assets/images/work/mschristensen-bibelselskabet-hero.webp";
@@ -67,6 +68,8 @@ function Slideshow() {
   const activeTex = useRef(null);
   const nextTex = useRef(null);
 
+  const thisRef = useRef(null);
+
   const handleScroll = (e) => {
     if (
       e &&
@@ -85,6 +88,9 @@ function Slideshow() {
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
           el.style.color = "red";
+          // el.style.background =
+          //   "linear-gradient(90deg, #00A3FF 0%, #04BDAF 50%, #0CBE89 100%)";
+
           if (!isChanging.current && plane) {
             isChanging.current = true;
 
@@ -122,9 +128,18 @@ function Slideshow() {
       });
     }
   };
+
   useEffect(() => {
     handleScroll();
   }, []);
+
+  useEffect(() => {
+    let arr = document.querySelectorAll(".scroll");
+    const scroll = new LocomotiveScroll({
+      el: thisRef.current,
+      smooth: true,
+    });
+  });
 
   useEffect(() => {
     if (slideshowInner.current) {
@@ -235,6 +250,7 @@ function Slideshow() {
             onScroll={(e) => handleScroll(e)}
             id="element"
             className="scroll"
+            ref={thisRef}
           >
             {data &&
               data.map((el, i) => (
@@ -242,6 +258,8 @@ function Slideshow() {
                   className="this-item doesSelected"
                   key={i}
                   data-info={el.imgId}
+                  data-scroll
+                  data-scroll-speed="1"
                   // onMouseMove={(event) => MouseOver(event, el.imgId)}
                   // onMouseOut={(e) => MouseOut(e, el.imgId)}
                 >
