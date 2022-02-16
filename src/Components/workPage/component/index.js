@@ -31,12 +31,10 @@ import { MouseContext } from "../../custom cursor/mouse-context";
 function Slideshow() {
   const [plane, setPlane] = useState(null);
 
-  
   // slideshow states
   const [activeTexture, setActiveTexture] = useState(1);
   const [maxTextures, setMaxTextures] = useState(0);
-  
-  
+
   const [data, setData] = useState([
     { name: "Bærnholdt", href: "#1", imgId: img1 },
     { name: "BioInnovation Institute", href: "#2", imgId: img2 },
@@ -60,9 +58,9 @@ function Slideshow() {
     { name: "SuperBrugsen", href: "#20", imgId: img20 },
     { name: "WestEnd London", href: "#21", imgId: img21 },
   ]);
-  
+
   const [imageState, setImageState] = useState(img1);
-  
+
   const isChanging = useRef(false);
   const tween = useRef(null);
   const activeTex = useRef(null);
@@ -91,37 +89,37 @@ function Slideshow() {
         ) {
           // el.style.color = "red";
           el.classList.add("isActiveP");
-          // if (!isChanging.current && plane) {
-          //   isChanging.current = true;
+          if (!isChanging.current && plane) {
+            isChanging.current = true;
 
-          //   // check what will be next image
-          //   let nextTextureIndex;
-          //   if (activeTexture < maxTextures) {
-          //     nextTextureIndex = activeTexture + 1;
-          //   } else {
-          //     nextTextureIndex = 1;
-          //   }
-          //   // apply it to our next texture
-          //   nextTex.current.setSource(plane.images[nextTextureIndex]);
+            // check what will be next image
+            let nextTextureIndex;
+            if (activeTexture < maxTextures) {
+              nextTextureIndex = activeTexture + 1;
+            } else {
+              nextTextureIndex = 1;
+            }
+            // apply it to our next texture
+            nextTex.current.setSource(plane.images[nextTextureIndex]);
 
-          //   tween.current = gsap.to(plane.uniforms.transitionTimer, {
-          //     duration: 1.75,
-          //     value: 90,
-          //     ease: "power2.inOut",
-          //     onComplete: () => {
-          //       isChanging.current = false;
-          //       tween.current = null;
+            tween.current = gsap.to(plane.uniforms.transitionTimer, {
+              duration: 1.75,
+              value: 90,
+              ease: "power2.inOut",
+              onComplete: () => {
+                isChanging.current = false;
+                tween.current = null;
 
-          //       plane.uniforms.transitionTimer.value = 0;
+                plane.uniforms.transitionTimer.value = 0;
 
-          //       const activeTextureIndex = nextTextureIndex;
-          //       // our next texture becomes our active texture
-          //       activeTex.current.setSource(plane.images[activeTextureIndex]);
-          //       setActiveTexture(activeTextureIndex);
-          //     },
-          //   });
-          // }
-          // setPlane(plane);
+                const activeTextureIndex = nextTextureIndex;
+                // our next texture becomes our active texture
+                activeTex.current.setSource(plane.images[activeTextureIndex]);
+                setActiveTexture(activeTextureIndex);
+              },
+            });
+          }
+          setPlane(plane);
         } else {
           el.classList.remove("isActiveP");
         }
@@ -172,36 +170,32 @@ function Slideshow() {
   };
 
   const onClick = () => {
-    if (!isChanging.current && plane) {
-      isChanging.current = true;
-
-      // check what will be next image
-      let nextTextureIndex;
-      if (activeTexture < maxTextures) {
-        nextTextureIndex = activeTexture + 1;
-      } else {
-        nextTextureIndex = 1;
-      }
-      // apply it to our next texture
-      nextTex.current.setSource(plane.images[nextTextureIndex]);
-
-      tween.current = gsap.to(plane.uniforms.transitionTimer, {
-        duration: 1.75,
-        value: 90,
-        ease: "power2.inOut",
-        onComplete: () => {
-          isChanging.current = false;
-          tween.current = null;
-
-          plane.uniforms.transitionTimer.value = 0;
-
-          const activeTextureIndex = nextTextureIndex;
-          // our next texture becomes our active texture
-          activeTex.current.setSource(plane.images[activeTextureIndex]);
-          setActiveTexture(activeTextureIndex);
-        },
-      });
-    }
+    // if (!isChanging.current && plane) {
+    //   isChanging.current = true;
+    //   // check what will be next image
+    //   let nextTextureIndex;
+    //   if (activeTexture < maxTextures) {
+    //     nextTextureIndex = activeTexture + 1;
+    //   } else {
+    //     nextTextureIndex = 1;
+    //   }
+    //   // apply it to our next texture
+    //   nextTex.current.setSource(plane.images[nextTextureIndex]);
+    //   tween.current = gsap.to(plane.uniforms.transitionTimer, {
+    //     duration: 1.75,
+    //     value: 90,
+    //     ease: "power2.inOut",
+    //     onComplete: () => {
+    //       isChanging.current = false;
+    //       tween.current = null;
+    //       plane.uniforms.transitionTimer.value = 0;
+    //       const activeTextureIndex = nextTextureIndex;
+    //       // our next texture becomes our active texture
+    //       activeTex.current.setSource(plane.images[activeTextureIndex]);
+    //       setActiveTexture(activeTextureIndex);
+    //     },
+    //   });
+    // }
   };
   useCurtains(
     (curtains) => {
