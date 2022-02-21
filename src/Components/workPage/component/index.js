@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { vertexShader, fragmentShader } from "../shaders/shaders";
 import "./index.css";
 import "../../../sass/components/_work-page.scss";
-// import LocomotiveScroll from "locomotive-scroll";
+import LocomotiveScroll from "locomotive-scroll";
 import img1 from "../../../assets/images/work/mschristensen-august-krogh-hero.webp";
 import img2 from "../../../assets/images/work/mschristensen-baernholdt-hero.webp";
 import img3 from "../../../assets/images/work/mschristensen-bibelselskabet-hero.webp";
@@ -67,7 +67,7 @@ function Slideshow() {
   const nextTex = useRef(null);
   const slideshowInner = useRef(null);
 
-  // const thisRef = useRef(null);
+  const thisRef = useRef(null);
   // const { cursorChangeHandler } = useContext(MouseContext);
 
   const handleScroll = (e) => {
@@ -131,17 +131,17 @@ function Slideshow() {
     handleScroll();
   }, []);
 
-  // useEffect(() => {
-  //   let arr = document.querySelectorAll(".scroll");
-  //   const scroll = new LocomotiveScroll({
-  //     el: thisRef.current,
-  //     smooth: true,
-  //   });
-  // });
+  useEffect(() => {
+    let arr = document.querySelectorAll(".scroll");
+    const scroll = new LocomotiveScroll({
+      el: thisRef.current,
+      smooth: true,
+    });
+  });
 
   useEffect(() => {
     if (slideshowInner.current) {
-      setMaxTextures(slideshowInner.current.childElementCount - 2);
+      setMaxTextures(slideshowInner.current.childElementCount - 3);
     }
 
     let currentTween = tween.current;
@@ -244,7 +244,7 @@ function Slideshow() {
             onScroll={(e) => handleScroll(e)}
             id="element"
             className="scroll"
-            // ref={thisRef}
+            ref={thisRef}
           >
             {data &&
               data.map((el, i) => (
@@ -252,8 +252,8 @@ function Slideshow() {
                   className="this-item doesSelected"
                   key={i}
                   data-info={el.imgId}
-                  // data-scroll
-                  // data-scroll-speed="1"
+                  data-scroll
+                  data-scroll-speed="1"
                 >
                   {el.name}
                 </p>
