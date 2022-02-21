@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { vertexShader, fragmentShader } from "../shaders/shaders";
 import "./index.css";
 import "../../../sass/components/_work-page.scss";
-import LocomotiveScroll from "locomotive-scroll";
+// import LocomotiveScroll from "locomotive-scroll";
 import img1 from "../../../assets/images/work/mschristensen-august-krogh-hero.webp";
 import img2 from "../../../assets/images/work/mschristensen-baernholdt-hero.webp";
 import img3 from "../../../assets/images/work/mschristensen-bibelselskabet-hero.webp";
@@ -26,7 +26,6 @@ import img18 from "../../../assets/images/work/mschristensen-pointvoucher-studio
 import img19 from "../../../assets/images/work/mschristensen-spotthespy-hero.webp";
 import img20 from "../../../assets/images/work/mschristensen-superbrugsen-hero.webp";
 import img21 from "../../../assets/images/work/mschristensen-westend-hero.webp";
-import { MouseContext } from "../../custom cursor/mouse-context";
 
 function Slideshow() {
   const [plane, setPlane] = useState(null);
@@ -34,33 +33,37 @@ function Slideshow() {
   // slideshow states
   const [activeTexture, setActiveTexture] = useState(1);
   const [maxTextures, setMaxTextures] = useState(0);
+  const [nextTextureIndex, setNextTextureIndex] = useState(2);
 
   const [data, setData] = useState([
-    { name: "Bærnholdt", href: "#1", imgId: img1 },
-    { name: "BioInnovation Institute", href: "#2", imgId: img2 },
-    { name: "Levende Streg", href: "#3", imgId: img3 },
-    { name: "August Krogh", href: "#4", imgId: img4 },
-    { name: "ScienceNews", href: "#5", imgId: img5 },
-    { name: "Novo Nordisk Foundation", href: "#6", imgId: img6 },
-    { name: "Pointvouche", href: "#7", imgId: img7 },
-    { name: "Pointvoucher Studios", href: "#8", imgId: img8 },
-    { name: "FoodWaste", href: "#9", imgId: img9 },
-    { name: "eSmiley", href: "#10", imgId: img10 },
-    { name: "Spotthespy", href: "#11", imgId: img11 },
-    { name: "Fonda", href: "#12", imgId: img12 },
-    { name: "Bibelselskabet", href: "#13", imgId: img13 },
-    { name: "Molio", href: "#14", imgId: img14 },
-    { name: "Linkfactory", href: "#15", imgId: img15 },
-    { name: "Haveselskabet", href: "#16", imgId: img16 },
-    { name: "Firstborn Capital", href: "#17", imgId: img17 },
-    { name: "Pengi", href: "#18", imgId: img18 },
-    { name: "Dansk Markedsføring", href: "#19", imgId: img19 },
-    { name: "SuperBrugsen", href: "#20", imgId: img20 },
-    { name: "WestEnd London", href: "#21", imgId: img21 },
+    { name: "Bærnholdt", href: "#1", imgId: img1, id: 1 },
+    { name: "BioInnovation Institute", href: "#2", imgId: img2, id: 2 },
+    { name: "Levende Streg", href: "#3", imgId: img3, id: 3 },
+    { name: "August Krogh", href: "#4", imgId: img4, id: 4 },
+    { name: "ScienceNews", href: "#5", imgId: img5, id: 5 },
+    { name: "Novo Nordisk Foundation", href: "#6", imgId: img6, id: 6 },
+    { name: "Pointvouche", href: "#7", imgId: img7, id: 7 },
+    { name: "Pointvoucher Studios", href: "#8", imgId: img8, id: 8 },
+    { name: "FoodWaste", href: "#9", imgId: img9, id: 9 },
+    { name: "eSmiley", href: "#10", imgId: img10, id: 10 },
+    { name: "Spotthespy", href: "#11", imgId: img11, id: 11 },
+    { name: "Fonda", href: "#12", imgId: img12, id: 12 },
+    { name: "Bibelselskabet", href: "#13", imgId: img13, id: 13 },
+    { name: "Molio", href: "#14", imgId: img14, id: 14 },
+    { name: "Linkfactory", href: "#15", imgId: img15, id: 15 },
+    { name: "Haveselskabet", href: "#16", imgId: img16, id: 16 },
+    { name: "Firstborn Capital", href: "#17", imgId: img17, id: 17 },
+    { name: "Pengi", href: "#18", imgId: img18, id: 18 },
+    { name: "Dansk Markedsføring", href: "#19", imgId: img19, id: 19 },
+    { name: "SuperBrugsen", href: "#20", imgId: img20, id: 20 },
+    { name: "WestEnd London", href: "#21", imgId: img21, id: 21 },
   ]);
 
-  const [imageState, setImageState] = useState(img1);
-
+  const [imageState, setImageState] = useState(0);
+  // console.log(
+  //   imageState,
+  //   "imageStateimageStateimageStateimageStateimageStateimageState"
+  // );
   const isChanging = useRef(false);
   const tween = useRef(null);
   const activeTex = useRef(null);
@@ -87,18 +90,18 @@ function Slideshow() {
           el.getBoundingClientRect().top < window.innerHeight / 2 + 50 &&
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
-          // el.style.color = "red";
           el.classList.add("isActiveP");
           if (!isChanging.current && plane) {
             isChanging.current = true;
 
             // check what will be next image
-            let nextTextureIndex;
-            if (activeTexture < maxTextures) {
-              nextTextureIndex = activeTexture + 1;
-            } else {
-              nextTextureIndex = 1;
-            }
+            // let nextTextureIndex;
+            // if (activeTexture < maxTextures) {
+            setNextTextureIndex(el.getAttribute("data-number-needed"));
+            // setNextTextureIndex(nextTextureIndex + 1);
+            // } else {
+            //   nextTextureIndex = 1;
+            // }
             // apply it to our next texture
             nextTex.current.setSource(plane.images[nextTextureIndex]);
 
@@ -131,13 +134,13 @@ function Slideshow() {
     handleScroll();
   }, []);
 
-  useEffect(() => {
-    let arr = document.querySelectorAll(".scroll");
-    const scroll = new LocomotiveScroll({
-      el: thisRef.current,
-      smooth: true,
-    });
-  });
+  // useEffect(() => {
+  //   let arr = document.querySelectorAll(".scroll");
+  //   const scroll = new LocomotiveScroll({
+  //     el: thisRef.current,
+  //     smooth: true,
+  //   });
+  // });
 
   useEffect(() => {
     if (slideshowInner.current) {
@@ -252,8 +255,10 @@ function Slideshow() {
                   className="this-item doesSelected"
                   key={i}
                   data-info={el.imgId}
-                  data-scroll
-                  data-scroll-speed="1"
+                  // data-scroll
+                  // data-scroll-speed="1"
+                  onMouseMove={() => setImageState(el.id)}
+                  data-number-needed={el.id}
                 >
                   {el.name}
                 </p>
