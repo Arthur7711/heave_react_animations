@@ -22,12 +22,13 @@ import img14 from "../../../assets/images/work/mschristensen-novo-nordisk-founda
 import img15 from "../../../assets/images/work/mschristensen-pengi-hero.webp";
 import img16 from "../../../assets/images/work/mschristensen-pointvoucher-hero.webp";
 import img17 from "../../../assets/images/work/mschristensen-pointvoucher-studios-hero.webp";
-import img18 from "../../../assets/images/work/mschristensen-pointvoucher-studios-hero.webp";
+import img18 from "../../../assets/images/work/mschristensen-sciencenews-hero.webp";
 import img19 from "../../../assets/images/work/mschristensen-spotthespy-hero.webp";
 import img20 from "../../../assets/images/work/mschristensen-superbrugsen-hero.webp";
 import img21 from "../../../assets/images/work/mschristensen-westend-hero.webp";
+import { useHistory } from "react-router-dom";
 
-function Slideshow() {
+function Slideshow(props) {
   const [plane, setPlane] = useState(null);
 
   // slideshow states
@@ -60,6 +61,7 @@ function Slideshow() {
   ]);
 
   const [imageState, setImageState] = useState(0);
+  const [activeTextureIndex, setActiveTextureIndex] = useState(2);
   // console.log(
   //   imageState,
   //   "imageStateimageStateimageStateimageStateimageStateimageState"
@@ -94,15 +96,12 @@ function Slideshow() {
           if (!isChanging.current && plane) {
             isChanging.current = true;
 
-            // check what will be next image
-            // let nextTextureIndex;
-            // if (activeTexture < maxTextures) {
+            console.log(maxTextures, "maxtext");
+            console.log(nextTextureIndex, plane.images, "both");
+            console.log(plane.images[nextTextureIndex], "imggggggg");
+
             setNextTextureIndex(el.getAttribute("data-number-needed"));
-            // setNextTextureIndex(nextTextureIndex + 1);
-            // } else {
-            //   nextTextureIndex = 1;
-            // }
-            // apply it to our next texture
+
             nextTex.current.setSource(plane.images[nextTextureIndex]);
 
             tween.current = gsap.to(plane.uniforms.transitionTimer, {
@@ -111,11 +110,10 @@ function Slideshow() {
               ease: "power2.inOut",
               onComplete: () => {
                 isChanging.current = false;
-                tween.current = null;
+                // tween.current = null;
 
                 plane.uniforms.transitionTimer.value = 0;
 
-                const activeTextureIndex = nextTextureIndex;
                 // our next texture becomes our active texture
                 activeTex.current.setSource(plane.images[activeTextureIndex]);
                 setActiveTexture(activeTextureIndex);
@@ -143,9 +141,11 @@ function Slideshow() {
   // });
 
   useEffect(() => {
-    if (slideshowInner.current) {
-      setMaxTextures(slideshowInner.current.childElementCount - 3);
-    }
+    // console.log(slideshowInner.current.childElementCount);
+    // if (slideshowInner.current) {
+    console.log(slideshowInner.current, "current");
+    setMaxTextures(slideshowInner.current.childElementCount - 2);
+    // }
 
     let currentTween = tween.current;
     return () => {
@@ -154,12 +154,14 @@ function Slideshow() {
       }
     };
   }, []);
-
+  useEffect(() => {
+    setActiveTextureIndex(nextTextureIndex);
+  });
   const uniforms = {
     transitionTimer: {
       name: "uTransitionTimer",
       type: "1f",
-      value: 0,
+      value: 1,
     },
   };
 
@@ -266,13 +268,16 @@ function Slideshow() {
           </nav>
         </div>
         <div ref={slideshowInner}>
-          <span>Click me !</span>
+          {/* <span>Click me !</span> */}
           <img
             src="https://www.curtainsjs.com/examples/medias/displacement.jpg"
             data-sampler="displacement"
             alt=""
           />
-          {data && data.map((el, i) => <img key={i} src={el.imgId} alt="" />)}
+          {data &&
+            data.map((el, i) => (
+              <img key={i} src={el.imgId} alt="" data-item-index={el.id} />
+            ))}
         </div>
       </Plane>
     </>
