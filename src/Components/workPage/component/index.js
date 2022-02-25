@@ -93,12 +93,15 @@ function Slideshow(props) {
           el.getBoundingClientRect().top > window.innerHeight / 2 - 100
         ) {
           el.classList.add("isActiveP");
-          if (!isChanging.current && plane) {
+          // console.log(isChanging.current, "cccccccccccccccccccccccccccccccccc");
+          // paymanica galis elementneri ush galn
+          // !isChanging.current && plane
+          if (plane) {
             isChanging.current = true;
 
-            console.log(maxTextures, "maxtext");
-            console.log(nextTextureIndex, plane.images, "both");
-            console.log(plane.images[nextTextureIndex], "imggggggg");
+            // console.log(maxTextures, "maxtext");
+            // console.log(nextTextureIndex, plane.images, "both");
+            // console.log(plane.images[nextTextureIndex], "imggggggg");
 
             setNextTextureIndex(el.getAttribute("data-number-needed"));
 
@@ -120,6 +123,7 @@ function Slideshow(props) {
               },
             });
           }
+          isChanging.current = false;
           setPlane(plane);
         } else {
           el.classList.remove("isActiveP");
