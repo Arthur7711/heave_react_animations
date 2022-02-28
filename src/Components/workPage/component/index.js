@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Plane, useCurtains } from "react-curtains";
 import gsap from "gsap";
 import { vertexShader, fragmentShader } from "../shaders/shaders";
@@ -60,7 +60,7 @@ function Slideshow(props) {
     { name: "WestEnd London", href: "#21", imgId: img21, id: 21 },
   ]);
 
-  const [imageState, setImageState] = useState(0);
+  const [imageState, setImageState] = useState(1);
   const [activeTextureIndex, setActiveTextureIndex] = useState(2);
   // console.log(
   //   imageState,
@@ -96,8 +96,8 @@ function Slideshow(props) {
           // console.log(isChanging.current, "cccccccccccccccccccccccccccccccccc");
           // paymanica galis elementneri ush galn
           // !isChanging.current && plane
-          if (plane) {
-            isChanging.current = true;
+          if (plane && !isChanging.current) {
+            isChanging.current = false;
 
             // console.log(maxTextures, "maxtext");
             // console.log(nextTextureIndex, plane.images, "both");
@@ -113,17 +113,15 @@ function Slideshow(props) {
               ease: "power2.inOut",
               onComplete: () => {
                 isChanging.current = false;
-                // tween.current = null;
 
                 plane.uniforms.transitionTimer.value = 0;
-
                 // our next texture becomes our active texture
                 activeTex.current.setSource(plane.images[activeTextureIndex]);
                 setActiveTexture(activeTextureIndex);
               },
             });
           }
-          isChanging.current = false;
+          // isChanging.current = false;
           setPlane(plane);
         } else {
           el.classList.remove("isActiveP");
@@ -147,7 +145,7 @@ function Slideshow(props) {
   useEffect(() => {
     // console.log(slideshowInner.current.childElementCount);
     // if (slideshowInner.current) {
-    console.log(slideshowInner.current, "current");
+    // console.log(slideshowInner.current, "current");
     setMaxTextures(slideshowInner.current.childElementCount - 2);
     // }
 
@@ -179,19 +177,18 @@ function Slideshow(props) {
   };
 
   const onClick = () => {
-    // if (!isChanging.current && plane) {
+    // if (plane && !isChanging.current) {
     //   isChanging.current = true;
     //   // check what will be next image
     //   let nextTextureIndex;
-    //   if (activeTexture < maxTextures) {
-    //     nextTextureIndex = activeTexture + 1;
-    //   } else {
-    //     nextTextureIndex = 1;
-    //   }
+    //   // if (activeTexture < maxTextures) {
+    //   //   nextTextureIndex = activeTexture + 1;
+    //   // } else {
+    //   nextTextureIndex = imageState;
     //   // apply it to our next texture
     //   nextTex.current.setSource(plane.images[nextTextureIndex]);
     //   tween.current = gsap.to(plane.uniforms.transitionTimer, {
-    //     duration: 1.75,
+    //     duration: 1.5,
     //     value: 90,
     //     ease: "power2.inOut",
     //     onComplete: () => {
